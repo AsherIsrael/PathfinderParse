@@ -1,0 +1,23 @@
+.benefit{
+    width: 300px;
+    display: block;
+}
+
+.tableHolder{
+    width: 100vw;
+}
+
+.raceName{
+    width: 100px;
+}
+
+.dataCell{
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.filterComponent{
+    display: inline-block;
+    margin-left: 20px;
+    margin-right: 20px;
+}

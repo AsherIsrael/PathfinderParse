@@ -1,0 +1,106 @@
+<div ng-controller="FeatsController as FC">
+    <select ng-model="filter_feat.type">
+        <option value="">Any</option>
+        <option value="General">General</option>
+        <option value="Combat">Combat</option>
+        <option value="Item Creation">Item Creation</option>
+        <option value="Story">Story</option>
+        <option value="Metamagic">Metamagic</option>
+        <option value="Mythic">Mythic</option>
+        <option value="Familiar">Familiar</option>
+        <option value="Item Mastery">Item Mastery</option>
+    </select>
+    <input type="text" placeholder="filter name..." ng-model="filter_feat.name"/>
+    <input type="text" placeholder="benefit includes..." ng-model="filter_feat.benefit"/>
+    <div>
+        <form class="filterComponent" ng-init="filter_feat.style=''">
+            <input type="radio" ng-model="filter_feat.style" value=" " checked="checked"/>Include style feats<br>
+            <input type="radio" ng-model="filter_feat.style" value="0"/>Exclude style feats<br>
+            <input type="radio" ng-model="filter_feat.style" value="1"/>Only style feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.grit=''">
+            <input type="radio" ng-model="filter_feat.grit" value=" "/>Include grit feats<br>
+            <input type="radio" ng-model="filter_feat.grit" value="0"/>Exclude grit feats<br>
+            <input type="radio" ng-model="filter_feat.grit" value="1"/>Only grit feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.item_mastery=''">
+            <input type="radio" ng-model="filter_feat.item_mastery" value=" "/>Include item mastery feats<br>
+            <input type="radio" ng-model="filter_feat.item_mastery" value="0"/>Exclude item mastery feats<br>
+            <input type="radio" ng-model="filter_feat.item_mastery" value="1"/>Only item mastery feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.panache=''">
+            <input type="radio" ng-model="filter_feat.panache" value=" "/>Include panache feats<br>
+            <input type="radio" ng-model="filter_feat.panache" value="0"/>Exclude panache feats<br>
+            <input type="radio" ng-model="filter_feat.panache" value="1"/>Only panache feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.performance=''">
+            <input type="radio" ng-model="filter_feat.performance" value=" "/>Include performance feats<br>
+            <input type="radio" ng-model="filter_feat.performance" value="0"/>Exclude performance feats<br>
+            <input type="radio" ng-model="filter_feat.performance" value="1"/>Only performance feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.racial=''">
+            <input type="radio" ng-model="filter_feat.racial" value=" "/>Include racial feats<br>
+            <input type="radio" ng-model="filter_feat.racial" value="0"/>Exclude racial feats<br>
+            <input type="radio" ng-model="filter_feat.racial" value="1"/>Only racial feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.shield_mastery=''">
+            <input type="radio" ng-model="filter_feat.shield_mastery" value=" "/>Include shield mastery feats<br>
+            <input type="radio" ng-model="filter_feat.shield_mastery" value="0"/>Exclude shield mastery feats<br>
+            <input type="radio" ng-model="filter_feat.shield_mastery" value="1"/>Only shield mastery feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.stare=''">
+            <input type="radio" ng-model="filter_feat.stare" value=" "/>Include stare feats<br>
+            <input type="radio" ng-model="filter_feat.stare" value="0"/>Exclude stare feats<br>
+            <input type="radio" ng-model="filter_feat.stare" value="1"/>Only stare feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.targeting=''">
+            <input type="radio" ng-model="filter_feat.targeting" value=" "/>Include targeting feats<br>
+            <input type="radio" ng-model="filter_feat.targeting" value="0"/>Exclude targeting feats<br>
+            <input type="radio" ng-model="filter_feat.targeting" value="1"/>Only targeting feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.teamwork=''">
+            <input type="radio" ng-model="filter_feat.teamwork" value=" "/>Include teamwork feats<br>
+            <input type="radio" ng-model="filter_feat.teamwork" value="0"/>Exclude teamwork feats<br>
+            <input type="radio" ng-model="filter_feat.teamwork" value="1"/>Only teamwork feats
+        </form>
+        <form class="filterComponent" ng-init="filter_feat.weapon_mastery=''">
+            <input type="radio" ng-model="filter_feat.weapon_mastery" value=" "/>Include weapon mastery feats<br>
+            <input type="radio" ng-model="filter_feat.weapon_mastery" value="0"/>Exclude weapon mastery feats<br>
+            <input type="radio" ng-model="filter_feat.weapon_mastery" value="1"/>Only weapon mastery feats
+        </form>
+    </div>
+    <div class="tableHolder">
+        <table border="1">
+            <tr>
+                <th>Type</th>
+                <th>Name</th>
+                <th>Description</th>
+                <th><div class="benefit">Benefit</div></th>
+                <th>Prerequisite Feats</th>
+                <th>Prerequisite Skills</th>
+                <th>Normal</th>
+                <th>Special</th>
+                <th><div class="raceName">Required Race</div></th>
+                <th>Goal</th>
+                <th>Completion Benefit</th>
+                <th>Suggested Traits</th>
+                <th>Source</th>
+            </tr>
+            <tr ng-repeat="feat in FC.feats | filter:filter_feat">
+                <td><div class="dataCell" ng-bind="feat.type"></div></td>
+                <td><div class="dataCell" ng-bind="feat.name"></div></td>
+                <td><div class="dataCell" ng-bind="feat.description"></div></td>
+                <td><div class="dataCell benefit" ng-bind="feat.benefit"></div></td>
+                <td><div class="dataCell" ng-bind="feat.prerequisite_feats"></div></td>
+                <td><div class="dataCell" ng-bind="feat.prerequisite_skills"></div></td>
+                <td><div class="dataCell" ng-bind="feat.normal"></div></td>
+                <td><div class="dataCell" ng-bind="feat.special"></div></td>
+                <td><div class="dataCell raceName" ng-bind="feat.race_name"></div></td>
+                <td><div class="dataCell" ng-bind="feat.goal"></div></td>
+                <td><div class="dataCell" ng-bind="feat.completion_benefit"></div></td>
+                <td><div class="dataCell" ng-bind="feat.suggested_traits"></div></td>
+                <td><div class="dataCell" ng-bind="feat.source"></div></td>
+            </tr>
+        </table>
+    </div>
+</div>
